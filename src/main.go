@@ -11,5 +11,7 @@ func handlerFunc(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", handlerFunc)
+	fmt.Println("Starting server on localhost:3000...")
+	fmt.Println("Press Ctrl + C to stop the server")
 	http.ListenAndServe(":3000", nil)
 }
