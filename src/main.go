@@ -15,10 +15,6 @@ func contactsHandle(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "<h1>Contacts page</h1>")
 }
 
-func pageNotFoundHandle(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(404)
-}
-
 func pathHandle(w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
 	case "/":
