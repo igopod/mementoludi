@@ -15,9 +15,24 @@ func contactsHandle(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "<h1>Contacts page</h1>")
 }
 
+func pageNotFoundHandle(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(404)
+}
+
+func pathHandle(w http.ResponseWriter, r *http.Request) {
+	switch r.URL.Path {
+	case "/":
+		mainPageHandle(w, r)
+	case "/contacts":
+		contactsHandle(w, r)
+	default:
+		// Handle the page not found error
+		http.NotFound(w, r)
+	}
+}
+
 func main() {
-	http.HandleFunc("/", mainPageHandle)
-	http.HandleFunc("/contacts", contactsHandle)
+	http.HandleFunc("/", pathHandle)
 	fmt.Println("Starting server on localhost:3000...")
 	fmt.Println("Press Ctrl + C to stop the server")
 	http.ListenAndServe(":3000", nil)
